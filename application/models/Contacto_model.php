@@ -35,7 +35,11 @@ class Contacto_model extends CI_Model {
         $this->db->update('contactos', $data);
         return $this->db->affected_rows() > 0;  // Retorna true si se actualizó con éxito
     }
-
+    public function deleteContacto($id) {
+        $this->db->where('contacto_id', $id);
+        $this->db->delete('contactos');
+        return $this->db->affected_rows() > 0;  // Retorna true si se eliminó con éxito
+    }
     public function findAllByUsuarioId($userId) {
         $this->db->select('*');
         $this->db->from('contactos');

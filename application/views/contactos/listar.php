@@ -15,18 +15,18 @@
         <div class="row justify-content-center" style="margin-top: 60px;">
             <div class="col-md-4">
                 <h2 class="text-center">Contactos</h2>
-                <form method="POST" action="<?php echo site_url("auth/login");?>">
-                    <div class="form-group">
-                        <label for="apellido">Apellido</label>
-                        <input type="text" class="form-control" id="apellido" name="apellido">
-                    </div>
+                <form method="POST" action="<?php echo site_url("contactos/agregar");?>">
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
                         <input type="text" class="form-control" id="nombre" name="nombre">
                     </div>
                     <div class="form-group">
-                        <label for="email">Correo</label>
-                        <input type="text" class="form-control" id="email" name="email">
+                        <label for="apellido">Apellido</label>
+                        <input type="text" class="form-control" id="apellido" name="apellido">
+                    </div>
+                    <div class="form-group">
+                        <label for="correo">Correo</label>
+                        <input type="text" class="form-control" id="correo" name="correo">
                     </div>
                     <div class="form-group">
                         <label for="telefono">Telefono</label>
@@ -42,6 +42,7 @@
                             <th scope="col">Nombre</th>
                             <th scope="col">Email</th>
                             <th scope="col">Teléfono</th>
+                            <th scope="col">Accion</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,6 +52,11 @@
                             <td><?php echo $contacto['contacto_nombre']; ?></td>
                             <td><?php echo $contacto['contacto_email']; ?></td>
                             <td><?php echo $contacto['contacto_telefono']; ?></td>
+                            <td>
+                                <a href="<?php echo site_url('contactos/eliminar/' . $contacto['contacto_id']); ?>" onclick="return confirm('¿Está seguro de eliminar este contacto?');">
+                                    <button class="btn btn-danger"><i class="bi bi-trash3-fill"></i></button>
+                                </a>
+                            </td>
                         </tr>
                         <?php } ?>
                     </tbody>
