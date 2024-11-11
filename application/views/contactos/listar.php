@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <?php echo $menu ?>
     <div class="container">
         <div class="row justify-content-center" style="margin-top: 60px;">
             <div class="col-md-4">
@@ -33,35 +34,34 @@
                     </div>
                     <button type="submit" class="btn btn-primary btn-block mt-3">Guardar</button>
                 </form>
+                <?php if (!empty($contactos)) { ?>
                 <table class="table mt-3">
                     <thead class="table-info">
                         <tr>
-                        <th scope="col">Apellido</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Telefono</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Teléfono</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php foreach ($contactos as $contacto) { ?>
                         <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                            <td><?php echo $contacto['contacto_apellido']; ?></td>
+                            <td><?php echo $contacto['contacto_nombre']; ?></td>
+                            <td><?php echo $contacto['contacto_email']; ?></td>
+                            <td><?php echo $contacto['contacto_telefono']; ?></td>
                         </tr>
-                        <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        </tr>
-                        <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                        </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
+                <?php } else { ?>
+                    <div class="alert alert-secondary" role="alert">
+                        No se han cargado datos
+                    </div>
+                <?php
+                }
+                ?>
             </div>
         </div>
     </div>

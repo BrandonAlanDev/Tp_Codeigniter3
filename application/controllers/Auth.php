@@ -32,7 +32,6 @@ class Auth extends CI_Controller {
 	public function salir()
 	{
         $this->session->sess_destroy();
-        
 		redirect('auth/index');
 	}
 }

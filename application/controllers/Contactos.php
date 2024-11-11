@@ -7,7 +7,13 @@ class Contactos extends CI_Controller {
 		parent::__construct();
 		if(!$this->session->userdata('usuario_id')){
 			$this->session->set_flashdata('OP','PROHIBIDO');
-			//redirect("auth/login");
+			redirect("auth/login");
+		}else{
+			$this->load->model("Contacto_model","contacto_model");
+			$contactos = $this->contacto_model->findAllByUsuarioId($this->session->userdata('usuario_id'));
+			if ($contactos) {
+                $this->datos["contactos"] = $contactos;
+            }
 		}
 	
 	}
@@ -21,7 +27,7 @@ class Contactos extends CI_Controller {
 	}
 
 	function mostrar($vista=""){
-		/*$this->datos["menu"]=$this->load->view("menu",null,true);*/
+		$this->datos["menu"]=$this->load->view("layouts/menu",null,true);
 		$this->load->view($vista,$this->datos);
 	}
 }
